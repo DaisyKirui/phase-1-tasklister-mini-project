@@ -1,31 +1,26 @@
 document.addEventListener("DOMContentLoaded", () => {
-  let inputBox = document.getElementById("create-task-form");
-  inputBox.addEventListener("submit", function(e){
-    e.preventDefault() 
-    myList(e.target.label)
-    inputBox.reset()
-  })
+  let inputForm = document.getElementById("create-task-form");
+  inputForm.addEventListener("submit", createNovelTask);
 });
 
-function myList(myTask){
- 
-  let ul = document.querySelector("tasks")
-  let li = document.createElement("li")
-  let btn = document.createElement("button")
-  btn.addEventListener("click", erase)
-  btn.textContent = "delete" 
-  li.textContent = `${myTask}`
-  ul.appendChild(li)
-  ul.appendChild(btn)
+const createNovelTask = function (event) {
+  event.preventDefault();
+  let newTaskList = document.getElementById("tasks");
+  let novelTask = document.createElement("li");
+  let novelTaskDescription = document.getElementById("new-task-description");
+  novelTask.innerText = novelTaskDescription.value;
+  console.log(novelTask);
+  appendNovelTask(novelTask);
+  event.target.reset();
+};
+const erase = (event) => {
+  event.target.ul.remove();
+};
 
-  console.log(li)
-  
-}
+const appendNovelTask = (task) => {
+  document.getElementById("tasks").appendChild(task);
+};
 
-function erase (e){
-  e.target.ul.remove
-
-}
 
 
 
